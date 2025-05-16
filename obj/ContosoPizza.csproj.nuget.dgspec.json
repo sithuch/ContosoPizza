@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\back-end.02\\ContosoPizza\\ContosoPizza.csproj": {}
+    "D:\\ContosoPizza\\ContosoPizza.csproj": {}
   },
   "projects": {
-    "C:\\Users\\back-end.02\\ContosoPizza\\ContosoPizza.csproj": {
+    "D:\\ContosoPizza\\ContosoPizza.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\back-end.02\\ContosoPizza\\ContosoPizza.csproj",
+        "projectUniqueName": "D:\\ContosoPizza\\ContosoPizza.csproj",
         "projectName": "ContosoPizza",
-        "projectPath": "C:\\Users\\back-end.02\\ContosoPizza\\ContosoPizza.csproj",
-        "packagesPath": "C:\\Users\\back-end.02\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\back-end.02\\ContosoPizza\\obj\\",
+        "projectPath": "D:\\ContosoPizza\\ContosoPizza.csproj",
+        "packagesPath": "C:\\Users\\CHHEM SITHUCH\\.nuget\\packages\\",
+        "outputPath": "D:\\ContosoPizza\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\back-end.02\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\CHHEM SITHUCH\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -70,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.409/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
