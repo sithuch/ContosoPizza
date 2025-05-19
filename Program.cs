@@ -1,7 +1,8 @@
+using ContosoPizza.Data;
+
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
-
+builder.Services.AddSqlite<PizzaContext>("Data Source=ContosoPizza.db");
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
