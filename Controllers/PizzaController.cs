@@ -1,66 +1,94 @@
-using ContosoPizza.Models;
 using ContosoPizza.Services;
+using ContosoPizza.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContosoPizza.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-
 public class PizzaController : ControllerBase
 {
-    public PizzaController()
+    PizzaService _service;
+    
+    public PizzaController(PizzaService service)
     {
+        _service = service;
     }
 
-    // GET all action
     [HttpGet]
-    public ActionResult<List<Pizza>> GetAll() =>
-        PizzaService.GetAll();
+    public IEnumerable<Pizza> GetAll()
+    {
+        return _service.GetAll();
+    }
 
-    // GET by Id action
     [HttpGet("{id}")]
-    public ActionResult<Pizza?> Get(int id)
+    public ActionResult<Pizza> GetById(int id)
     {
-        var pizza = PizzaService.Get(id);
-        if (pizza == null)
-            return NotFound();
-        else
+        var pizza = _service.GetById(id);
+
+        if(pizza is not null)
+        {
             return pizza;
-    }
-
-    // POST action
-    [HttpPost]
-    public IActionResult Post(Pizza pizza)
-    {
-        PizzaService.Add(pizza);
-        return CreatedAtAction(nameof(Get), new { id = pizza.Id }, pizza);
-    }
-
-    // PUT action
-    [HttpPut("{id}")]
-    public IActionResult Put(int id, Pizza pizza)
-    {
-        if (id != pizza.Id)
-            return BadRequest();
-
-        var existingPizza = PizzaService.Get(id);
-        if (existingPizza is null)
+        }
+        else
+        {
             return NotFound();
-
-        PizzaService.Update(pizza);
-        return NoContent();
+        }
     }
 
-    // DELETE action
+
+    [HttpPost]
+    public IActionResult Create(Pizza newPizza)
+    {
+        var pizza = _service.Create(newPizza);
+        return CreatedAtAction(nameof(GetById), new { id = pizza!.Id }, pizza);
+    }
+
+    [HttpPut("{id}/addtopping")]
+    public IActionResult AddTopping(int id, int toppingId)
+    {
+        var pizzaToUpdate = _service.GetById(id);
+
+        if(pizzaToUpdate is not null)
+        {
+            _service.AddTopping(id, toppingId);
+            return NoContent();    
+        }
+        else
+        {
+            return NotFound();
+        }
+    }
+
+    [HttpPut("{id}/updatesauce")]
+    public IActionResult UpdateSauce(int id, int sauceId)
+    {
+        var pizzaToUpdate = _service.GetById(id);
+
+        if(pizzaToUpdate is not null)
+        {
+            _service.UpdateSauce(id, sauceId);
+            return NoContent();    
+        }
+        else
+        {
+            return NotFound();
+        }
+    }
+
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-        var pizza = PizzaService.Get(id);
-        if (pizza is null)
-            return NotFound();
+        var pizza = _service.GetById(id);
 
-        PizzaService.Delete(id);
-        return NoContent();
+        if(pizza is not null)
+        {
+            _service.DeleteById(id);
+            return Ok();
+        }
+        else
+        {
+            return NotFound();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using ContosoPizza.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContosoPizza.Migrations
 {
     [DbContext(typeof(PizzaContext))]
-    partial class PizzaContextModelSnapshot : ModelSnapshot
+    [Migration("20250520031343_YourMigrationName")]
+    partial class YourMigrationName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.5");
@@ -29,12 +32,7 @@ namespace ContosoPizza.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("SauceId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("SauceId");
 
                     b.ToTable("Pizzas");
                 });
@@ -90,15 +88,6 @@ namespace ContosoPizza.Migrations
                     b.HasIndex("ToppingsId");
 
                     b.ToTable("PizzaTopping");
-                });
-
-            modelBuilder.Entity("ContosoPizza.Models.Pizza", b =>
-                {
-                    b.HasOne("ContosoPizza.Models.Sauce", "Sauce")
-                        .WithMany()
-                        .HasForeignKey("SauceId");
-
-                    b.Navigation("Sauce");
                 });
 
             modelBuilder.Entity("PizzaTopping", b =>
